@@ -1,0 +1,38 @@
+    @import url('../css/style.css');
+    *{
+        padding: 0;
+        margin:0;
+    }
+
+    .carga{
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin:100px auto;
+    }
+
+    .icon-spinner9{
+        font-size:70px;
+        animation:giro 1s infinite;
+        color:#00838f;
+    }
+
+    @keyframes giro{
+        0%{
+            transform: rotate(-180deg);
+            color: #00838f;
+        }
+
+        5%{
+            color:#00897b;
+        }
+
+        10%{
+            color:#689f38;
+        }
+
+        15%{
+            color:#ffb300;
+        }
+    }

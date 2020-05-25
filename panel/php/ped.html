@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<title></title>
+		<link href="../css/estilo.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+		<script src="../js/ajuste.js"></script>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+	</head>
+	<body>
+	<div class="cont">
+		<nav>
+			Sys
+			
+			<label for="cog"><span class="icon-cog"></span></label>
+			<input type="checkbox" id="cog">
+				<div class="emer" id="emer">
+					<ul>
+						<li><a href="ajuste.html"><span class="icon-cogs"></span>Ajustes</a></li>	
+						<li><a href="ped.html"><span class="icon-pencil"></span>Editar</a></li>
+						<li><a href="html/ped.html"><span class="icon-user-tie"></span>Perfil</a></li>
+					</ul>
+				</div>
+			<ul>
+				<li><a href="../index.html">Inicio</a></li>
+			</ul>
+		</nav>
+	<div class="container">
+		<input type="text" placeholder="Buscar">
+		<button>Buscar</button>
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Estado</th>
+				<th>Acciones</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Brayan</td>
+				<td><label class="act">Activado</label></td>
+				<td><span class="icon-spinner11"></span><span class="icon-bin2" title="Eliminar"></span></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Uriel</td>
+				<td><label class="act">Activado</label></td>
+				<td><span class="icon-spinner11"></span><span class="icon-bin2" title="Eliminar"></span></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Cañenguez</td>
+				<td><label class="des">Desactivado</label></td>
+				<td><span class="icon-spinner11"></span><span class="icon-bin2" title="Eliminar"></span></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Uriel</td>
+				<td><label class="act">Activado</label></td>
+				<td><span class="icon-spinner11"></span><span class="icon-bin2" title="Eliminar"></span></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>Cañenguez</td>
+				<td><label class="des">Desactivado</label></td>
+				<td><span class="icon-spinner11" title="Actualizar"></span><span class="icon-bin2" title="Eliminar"></td>
+			</tr>
+		</table>
+		<ul class="lista">
+			<li><span class="icon-first"></span></li>
+			<li><span class="icon-previous2"></span></li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li><span class="icon-next2"></span></li>
+			<li><span class="icon-last"></span></li>
+		</ul>
+	</div>
+	<div class="back-info" id="back">
+		<div class="confirm" >
+		<span class="icon-cross" id="cerrar"></span>
+			<label>¿Esta seguro?</label>
+			<button><span class="icon-bin"></span>Eliminar</button>
+			<button class="btn"><span class="icon-blocked"></span> Cancelar</button>
+		</div>
+	</div>
+			<script>
+		$('#cerrar').click(function(){
+			$('#back').toggle(200);
+		});
+	</script>
+	</body>
+</html>
+<!--1nform@tic@2019-->

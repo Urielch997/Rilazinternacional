@@ -1,0 +1,30 @@
+.seccion-re{
+  width: 80%;
+  margin:70px auto;
+}
+
+.re-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.articulo-re{
+  color:#424242;
+}
+
+.re-img img{
+  width: 60%;
+}
+
+.lista-re{
+  list-style: disc;
+}
+
+.lista-re > li{
+  margin-left: 60px;
+}
+
+a{
+  color: #e64a19;
+}

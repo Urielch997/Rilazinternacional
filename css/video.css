@@ -1,0 +1,88 @@
+.seccion{
+    display: flex;
+    flex-wrap: wrap;
+    margin:60px auto;
+    justify-content: space-between;
+}
+
+.seccion div{
+    width: 46%;
+}
+
+video{
+    width: 100%;
+}
+
+.seccion div:nth-child(3) ul{
+    list-style: none;
+    color: #fff;
+    
+}
+
+.seccion > div:nth-child(1){
+    width: 100%;
+}
+
+.seccion div:nth-child(3) ul li{
+    display: flex;
+    flex-wrap: wrap;
+    background: #616161;
+    margin: 2px;
+    padding-top:20px;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.listado-video div{
+    padding: 10px 5px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.seccion div:nth-child(3) ul li ul{
+    width: 100%;
+    margin-top:30px;
+    position: relative;
+    box-sizing: border-box;
+    display: none;
+}
+
+.seccion div:nth-child(3) ul li ul li{
+    width: 100%;
+    background: #fff;
+    color:#757575;
+    margin:0px;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #757575;
+   
+}
+
+.seccion div:nth-child(3) ul li ul li:last-child{
+    border-bottom: 0px;
+   
+}
+
+.seccion div:nth-child(3) ul li ul li img{
+    width: 100px;
+}
+
+.seccion div:nth-child(3) ul li img{
+    width: 20px;
+}
+
+@media screen and (max-width:800px){
+    .seccion{
+        width: 90%;
+        flex-wrap: wrap;
+    }
+
+    .seccion div{
+        width: 100%;
+        
+    }
+}

@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title></title>
+		<link href="../css/ajuste.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<script src="../js/ajuste.js"></script>
+	</head>
+	<body>
+	<div class="container">
+		<nav id="nav">
+			Sys
+			
+			<label for="cog"><span class="icon-cog"></span></label>
+			<input type="checkbox" id="cog">
+				<div class="emer" id="emer">
+					<ul>
+						<li><a href="ajuste.html"><span class="icon-cogs"></span>Ajustes</a></li>
+						<li><a href="ped.html"><span class="icon-pencil"></span>Editar</a></li>
+						<li><a href="html/ped.html"><span class="icon-user-tie"></span>Perfil</a></li>
+					</ul>
+				</div>
+			<ul>
+				<li><a href="../index.html">Inicio</a></li>
+			</ul>
+		</nav>
+		<div class="content" id="content">
+			<h1>Ajustes</h1>
+			<div class="section">
+			<label>Color:</label>
+			<div class="color">
+				<button class="orange" onclick="cambiar('#ff5722')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="pink" onclick="cambiar('#c2185b')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="grenn" onclick="cambiar('#00796b')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="cyan" onclick="cambiar('#00bcd4')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="yel" onclick="cambiar('#ff9800')"><span class="icon-checkmark" id="sele"></span></button>
+			</div>
+			<label>Ingrese codigo de color <b>(Exadecimal)</b>:</label>
+			<input type="color" onchange="cambiar(value)"><span class="icon-checkmark2" id="che"></span>
+			</div>
+			<hr></hr>
+			<div class="section">
+			<label>Color de textos:</label>
+				<div class="color">
+				<button class="orange" onclick="texto('#ff5722')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="pink" onclick="texto('#c2185b')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="grenn" onclick="texto('#00796b')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="cyan" onclick="texto('#00bcd4')"><span class="icon-checkmark" id="sele"></span></button>
+				<button class="yel" onclick="texto('#ff9800')"><span class="icon-checkmark" id="sele"></span></button>
+			</div>
+			</div>
+			
+			<button class="save">Guardar<span class="icon-checkmark"></span></button>
+		</div>
+			
+		</div>
+	<div class="carga">
+		<span class="icon-spinner9"></span>
+<label>Cargando...</label>
+	</div>
+	</body>
+</html>

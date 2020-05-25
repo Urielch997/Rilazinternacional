@@ -1,0 +1,15 @@
+.publicacion{
+  word-break: break-all;
+}
+
+.custom-file-label::after{
+  color:#fff;
+  background: #9c27b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family:"Material Icons";
+  content:"add_photo_alternate";
+  font-size:"20px";
+  -webkit-font-feature-settings: 'liga';
+}

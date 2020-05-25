@@ -1,0 +1,153 @@
+.cont{
+    height: auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+.seccion{
+    margin-top:60px;
+    width: 100%;
+}
+
+.docu-descripcion{
+    background: #0d47a1;
+    color:#fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.icon-quotes-left, .icon-quotes-right{
+    color:#fdd835;
+    font-size:20px;
+}
+
+.docu-info{
+    width: 80%;
+    margin:5px auto;
+}
+
+.cartas{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.title{
+    color:#303f9f;
+    width: 100%;
+    text-align: center;
+}
+
+.docu-cart{
+    width: 35%;
+    text-align: justify;
+    padding: 20px;
+    background: #fafafa;
+}
+
+.funcionalidad-docu{
+    width: 40%;
+    text-align: center;
+    color:#29b6f6;
+}
+
+.funcion{
+    display: flex;
+}
+
+.icon-trophy, .icon-users, .icon-wrench{
+    color:#303f9f;
+    font-size:50px;
+}
+
+.video-docu{
+    background: #0089cf;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.video-docu iframe{
+    width: 50%;
+}
+
+.titulo-docuware{
+    width:100%;
+    color:#Fff;
+    font-weight: 900;
+    font-size:25px;
+    
+}
+
+.list-video-docu{
+    width: 40%;
+    overflow: hidden;
+    
+}
+
+
+
+ul{
+    list-style: none;
+}
+
+.list-video-docu ul{
+    width: 100%;
+    margin:90px 0;
+}
+
+.list-video-docu ul li{
+    background: #37474f;
+    margin:20px auto;
+    width: 100%;
+    text-align: left;
+    padding: 5px 10px;
+    color:#fff;
+    font-weight: lighter;
+    transition:0.2s ease;
+}
+
+.list-video-docu ul li a{
+    color:#fff;
+}
+
+@media screen and (max-width: 800px){
+    .docu-cart{
+        width: 100%;
+        margin-top:5px;    
+    }
+
+    .cartas{
+        flex-wrap:wrap;
+       
+    }
+
+    .funcionalidad-docu{
+        width: 100%;
+    }
+
+    .funcion{
+        flex-wrap:wrap;
+    }
+
+    .video-docu{
+        flex-wrap: wrap;
+    }
+
+    .video-docu iframe{
+        width: 100%;
+        margin:5px;
+    }
+
+    .list-video-docu{
+        width: 90%;
+        margin:0px auto;
+    }
+
+    .list-video-docu ul{
+        margin:5px auto;
+    }
+}

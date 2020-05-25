@@ -1,0 +1,9 @@
+.custom-file-label::after{
+  content:"Seleccionar.";
+  background:#9c27b0;
+  color:#fff;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}

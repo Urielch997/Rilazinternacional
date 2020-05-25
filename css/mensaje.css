@@ -1,0 +1,15 @@
+.popup-error{
+    background:#f44336;
+    padding: 5px;
+    position: absolute;
+    z-index:1000;
+    color:#fff;
+    right: 0;
+    top:20px;
+    flex-wrap: wrap;
+    display: none;
+}
+
+.close{
+    width: 100%;
+}

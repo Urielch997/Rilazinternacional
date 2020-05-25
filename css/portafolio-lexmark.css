@@ -1,0 +1,23 @@
+iframe{
+    width:100%;
+    height: 500px;
+    margin:0;
+}
+
+.iframe-present{
+    width: 80%;
+    margin:5px auto;
+}
+
+@media screen and (max-width:800px){
+.iframe-present{
+    width: 95%;
+    margin:5px auto;
+}
+iframe{
+    width:100%;
+    height: 200px;
+    margin:0;
+    
+}
+}

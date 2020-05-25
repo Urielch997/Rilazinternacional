@@ -1,0 +1,47 @@
+footer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.informacion{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.informacion > a{
+    width: 100%;
+}
+
+.social{
+    width: 40%;
+    margin:5px auto;
+}
+
+.social ul{
+    display: flex;
+    flex-wrap:wrap;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.social ul li span{
+    padding: 5px;
+}
+
+@media screen and (max-width:800px){
+    .seccion{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .informacion{
+        width: 100%;
+        text-align: center;
+    }
+
+    .social{
+        width: 100%;
+    }
+}

@@ -1,0 +1,177 @@
+*{
+  box-sizing: border-box;
+}
+
+.seccion{
+    width: 90%;
+    margin:30px auto;
+}
+
+.paper-cart{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.paper-cart div{
+    width: 30%;
+    border:1px solid #4caf50;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 40px;
+    padding: 20px;
+    text-align: center;
+    background: #f2f2f4;
+    cursor: default;
+}
+
+label{
+  width: 100%;
+  font-size: 20px;
+  margin: 5px;
+  padding: 10px;
+}
+
+.sistema{
+  color:#bdbdbd;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.divider:hover .icon-search{
+    color:#4caf50;
+    animation: lop 1s ease;
+}
+
+.video-papercut{
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.paper-cart .titulo-video-paper{
+    width: 100%;
+    border:0px
+}
+
+iframe{
+    width: 50%;
+    height: 300px;
+    float:left;
+}
+
+
+.paper-cart .info-video-papercut{
+    width:40%;
+    float:right;
+    border:0px;
+}
+
+.paper-cart .info-video-papercut ul{
+    width: 100%;
+}
+
+.paper-cart .info-video-papercut ul li img{
+    width: 10px;
+}
+
+@keyframes lop{
+    0%{
+
+    }
+
+    10%{
+        transform: scale(1.1);
+    }
+
+    20%{
+        transform: rotate(30deg);
+    }
+
+    25%{
+        transform: rotate(0deg);
+    }
+
+    30%{
+        transform: rotate(-30deg);
+    }
+
+    35%{
+        transform: rotate(0deg);
+    }
+
+    40%{
+        transform: rotate(30deg)
+    }
+}
+
+
+
+.icon-search{
+    margin-right:5px;
+}
+
+.paper-cart div img{
+    width: 30%;
+}
+
+.paper-cart div ul{
+    list-style: none;
+}
+
+.paper-cart div ul li{
+    margin-top:30px;
+}
+
+.paper-cart div ul li span{
+    color:#4caf50;
+    margin-right: 10px;
+}
+
+@media screen and (max-width:800px){
+    .seccion{
+        flex-wrap: wrap;
+    }
+
+    .paper-cart{
+        flex-wrap: wrap;
+    }
+
+    .paper-cart div{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top:10px;
+    }
+
+    .paper-cart div img{
+        width: 100%;
+    }
+
+    .divider{
+        margin-top:10px;
+        font-size: 15px;
+    }
+
+    .sistema{
+      font-size:25px;
+    }
+
+    .paper-cart .info-video-papercut{
+        width: 95%;
+    }
+
+    iframe{
+        width: 95%;
+    }
+}

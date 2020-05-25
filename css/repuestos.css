@@ -1,0 +1,43 @@
+.sec{
+  position: absolute;
+  width: 100%;
+  margin: 0;
+}
+
+ul{
+  list-style: none;
+}
+
+.contenedor{
+  width: 100%;
+  margin:90px auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cart-rep{
+  display: flex;
+  width: 25%;
+  margin: 20px;
+  padding: 5px;
+  box-shadow: 0px 0px 8px -5px #000;
+}
+
+.imagen-repuesto, .informacion-repuesto{
+  width: 50%;
+}
+
+.imagen-repuesto{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.informacion-repuesto{
+  margin-left: 5px;
+}
+
+.imagen-repuesto img{
+  width: 100%;
+}

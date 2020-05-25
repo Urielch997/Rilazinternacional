@@ -1,0 +1,83 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.contenedor{
+  position: absolute;
+  background: rgb(60,52,210);
+  background: linear-gradient(90deg, rgba(60,52,210,1) 15%, rgba(86,86,209,1) 46%, rgba(226,0,255,1) 100%);
+  height: 100%;
+  width: 100%;
+}
+
+.form{
+  width: 70%;
+  margin:80px auto 0px;
+  background: #f5f5f5;
+  box-shadow: 0px 0px 15px -4px #212121;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.encabezado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form{
+  width: 90%;
+  margin:5px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input{
+  width: 90%;
+  padding: 10px 5px;
+  margin: 20px auto;
+  background: #e0e0e0;
+  border:0;
+}
+
+.img{
+  width: 50%;
+}
+
+.botones{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form a{
+  width: 100px;
+  background: #1976d2;
+  padding:10px 5px;
+  text-align: center;
+  color:#fff;
+  text-decoration: none;
+}
+
+input[type="submit"]{
+  width: 100px;
+  background: #00897b;
+  border:0;
+  color:#fff;
+  margin: 5px;
+
+}
+
+.encabezado img{
+  width: 50%;
+  margin-top: 10px;
+}
+
+.seccion-form{
+  width: 50%;
+}

@@ -1,0 +1,144 @@
+*{
+  box-sizing: border-box;
+}
+
+.cont{
+  height: auto;
+}
+.seccion{
+  margin-top: 90px;
+}
+
+.titulo{
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  margin: 5px;
+}
+
+.detalle{
+  background:#1e88e5;
+  color:#fff;
+}
+
+td,th{
+  text-align: center;
+}
+
+td,th{
+  padding: 0px 30px;
+}
+
+.plataformas{
+  width: 100%;
+  margin-top:20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.cantidad-sucursales{
+  width: 100%;
+  padding: 20px;
+  background: #eeeeee;
+  color:#757575;
+}
+
+.sistema, .busdatos{
+  width: 50%;
+}
+
+.sistema div{
+  display: flex;
+  align-items: center;
+  margin-top:5px;
+}
+
+#sis2:checked ~ .checkbox,
+#sis3:checked ~ .checkbox,
+#sis4:checked ~ .checkbox,
+#sis5:checked ~ .checkbox,
+#sis6:checked ~ .checkbox,
+#sis7:checked ~ .radio,
+#sis8:checked ~ .radio,
+#sis9:checked ~ .radio,
+#sis10:checked ~ .radio,
+#sis11:checked ~ .radio,
+#sis12:checked ~ .radio,
+#sis13:checked ~ .radio,
+#sis14:checked ~ .radio,
+#sis15:checked ~ .checkbox,
+#sis16:checked ~ .checkbox,
+#sis17:checked ~ .checkbox,
+#sis18:checked ~ .checkbox,
+#sis19:checked ~ .radio,
+#sis20:checked ~ .radio,
+#sis21:checked ~ .radio,
+#sis22:checked ~ .radio,
+#sis23:checked ~ .radio,
+#sis24:checked ~ .radio,
+#sis25:checked ~ .radio,
+#sis26:checked ~ .radio{
+  background: url('../img/icons8_checkmark_96px.png') #004d40;
+  background-size: 100% 100%;
+}
+
+input[type="checkbox"],input[type="radio"]{
+  display: none;
+}
+
+.radio,.checkbox{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 1px solid #00897b;
+    cursor: pointer;
+    transition: all ease 0.4s;
+}
+
+.checkbox{
+  margin-right: 5px;
+}
+
+.radio{
+    border-radius: 50px;
+}
+
+.sistema{
+  margin-top:32px;
+}
+
+.input-text{
+  border-radius: 10px;
+  padding: 10px 20px;
+  border:0px;
+  box-shadow: 0px 0px 15px -6px #757575;
+  outline: none;
+}
+
+.fila{
+  margin-top:10px;
+}
+
+textarea{
+  resize: none;
+  width: 40%;
+  height: 200px;
+}
+
+button{
+  background: #1565c0;
+  color:#FFF;
+}
+
+button:hover{
+  box-shadow: 0px 0px 15px -7px #000;
+  cursor:pointer;
+}
+
+@media screen and (max-width:800px){
+  .seccion{
+    width: 90%;
+    flex-wrap:wrap;
+  }
+}

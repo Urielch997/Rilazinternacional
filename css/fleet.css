@@ -1,0 +1,58 @@
+.seccion-fleet{
+  width: 80%;
+  margin:5px auto;
+}
+
+.header-img img{
+  width: 100%;
+  left:0;
+}
+
+.articulo-fleet{
+  background: #fff;
+  color:#000;
+  margin-top: 20px;
+}
+
+.cart-img img{
+  width: 50px;
+}
+
+.carta{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fleet-cart{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.cart-info{
+  width: 80%;
+}
+
+.cart-img {
+  width: 10%;
+}
+
+@media screen and (max-width: 800px){
+    .header-img{
+      margin-top: 70px;
+    }
+
+    .carta{
+      flex-wrap: wrap;
+    }
+
+    .fleet-cart{
+      width: 100%;
+    }
+
+    .cart-img img{
+      width: 20px;
+    }
+}

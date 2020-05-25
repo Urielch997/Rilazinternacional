@@ -1,0 +1,145 @@
+.seccion-bridge{
+  margin: 60px auto;
+  width: 95%;
+}
+
+.imagen{
+  margin-top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen > img{
+  width: 50%;
+}
+
+.banner{
+  width: 100%;
+  background: #d50000;
+  height: 30px;
+  color:#fff;
+  text-align: center;
+}
+
+.informacion{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.img-info{
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 10px -2px #000;
+  height: 300px;
+  padding: 15px;
+  width: 30%;
+}
+
+.info-sol{
+  margin-left:-15px;
+  padding: 10px;
+  background: #424242;
+  color:#fff;
+  box-shadow: -5px 0px 10px -7px #000;
+  width: 60%;
+}
+
+.seccion-bridge .informacion:nth-child(4) .img-info{
+  height: auto;
+  align-items: center;
+  box-shadow: 0px 0px 10px -2px #000;
+}
+
+.seccion-bridge .informacion:nth-child(4) .info-sol{
+  margin-right: -5px;
+  box-shadow: 5px 0px 10px -7px #000;
+  background: #424242;
+}
+
+.pdf-ebrid{
+  display: flex;
+}
+
+.pdf-sec{
+  width: 40%;
+  padding: 25px;
+}
+
+.pdf-ebrid .pdf-sec:nth-child(2){
+  background: #37474f;
+  text-align: center;
+  padding: 10px;
+  color:#fff;
+}
+
+embed{
+  width: 100%;
+}
+
+button{
+  display: none;
+}
+
+@media screen and (max-width: 800px){
+  .img-info,.info-sol{
+      width: 95%;
+  }
+
+  .info-sol{
+    margin:0;
+  }
+
+  .seccion-bridge .informacion:nth-child(4) .img-info{
+    position: absolute;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .seccion-bridge .informacion:nth-child(4){
+    position: relative;
+  }
+
+  .seccion-bridge .informacion:nth-child(4) .info-sol{
+    margin-top: 465px;
+    margin-right: 0;
+  }
+
+  .pdf-ebrid .pdf-sec:nth-child(2){
+    width: 100%;
+  }
+
+  .seccion-bridge .informacion:nth-child(4) .img-info > img{
+    height: 430px;
+    width: auto;
+  }
+  .pdf-sec{
+    width: 95%;
+  }
+
+  embed{
+    display: none;
+    width:100%;
+  }
+
+  button{
+    display: block;
+    background: #f44336;
+    
+    font-weight: 700;
+  }
+
+  button a{
+    color:#fff;
+  }
+
+  button span{
+    margin-right: 10px;
+  }
+}

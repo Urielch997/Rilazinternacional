@@ -1,0 +1,72 @@
+<html>
+
+<head>
+	<title></title>
+	<link href="../css/post.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<script src="../js/ajuste.js"></script>
+</head>
+
+<body>
+	<div class="view">
+		<div class="img-view">
+			<span class="icon-circle-left"></span>
+			<span class="icon-circle-right"></span>
+		</div>
+	</div>
+	<div class="container">
+		<nav>
+			Sys
+
+			<label for="cog"><span class="icon-cog"></span></label>
+			<input type="checkbox" id="cog">
+			<div class="emer" id="emer">
+				<ul>
+					<li><a href="html/ajuste.html"><span class="icon-cogs"></span>Ajustes</a></li>
+					<li><a href="html/ped.html"><span class="icon-pencil"></span>Editar</a></li>
+					<li><a href="ped.html"><span class="icon-user-tie"></span>Perfil</a></li>
+				</ul>
+			</div>
+			<ul>
+				<li><a href="#">Inicio</a></li>
+			</ul>
+		</nav>
+		<div class="content" id="car">
+			<table>
+				<tr>
+					<td>Titulo:</td>
+					<td><input type="text"></td>
+				</tr>
+				<tr>
+					<td>Publicacion:</td>
+					<td><textarea></textarea></td>
+				</tr>
+				<tr>
+					<td>Enlaces de descarga:
+						<input type="text" id="enlacedes"></td>
+					<td>Tittulo de boton:<input type="text" id="botontitulo"></input></td>
+					<td><br><button onclick="add();">Guardar</button></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						
+					</td>
+				</tr>
+			</table>
+			<div class="view-down" id="view">
+					<label>HomeBrew<span class="icon-cross"></span></label>
+					<label>HomeBrew<span class="icon-cross"></span></label>
+					<label>HomeBrew<span class="icon-cross"></span></label>
+				</div>
+		</div>
+	</div>
+	<div class="carga">
+		<span class="icon-spinner9"></span>
+		<label>Cargando...</label>
+	</div>
+
+</body>
+
+</html>
