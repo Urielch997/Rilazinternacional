@@ -1,5 +1,7 @@
 <?php
 require "../dao/daoMarca.php";
+require "../Models/Marca.php";
+
 class marcasControllers extends daoMarca
 {
 

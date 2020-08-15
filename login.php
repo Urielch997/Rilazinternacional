@@ -21,7 +21,6 @@
         BODY{
             background:lightblue;
         }
-
     </style>
 </head>
 

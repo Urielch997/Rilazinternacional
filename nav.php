@@ -25,7 +25,7 @@
                                 <li><a href="soluciones-lexmark-embedded.php">Soluciones Embedded</a></li>
                             </ul>
                     </li>
-                  <!--  <li><span class="icon-key"></span><a href="login.php">Login</a></li> -->
+                  <li><span class="icon-key"></span><a href="login.php">Login</a></li>
                 </ul>
 </nav>
 <div class="menu-active" id="menu">
@@ -77,9 +77,9 @@
                         </li>
                         <li id="toshi">Toshiba
                             <ul id="list3">
-                                <li><a href="e-bridge.php"><img src="img/e-BRIDGE.jpg" alt="">Cloud Connect</a></li>
-                                <li><a href="ebrige-movil-print.php"><img src="img/e-BRIDGE.jpg" alt="">Print & Capture</a></li>
-                                <li><a href="googleprint.php"><img src="img/e-BRIDGE.jpg" alt="">Google Cloud print</a></li>
+                                <li><a href="e-bridge.php">Cloud Connect</a></li>
+                                <li><a href="ebrige-movil-print.php">Print & Capture</a></li>
+                                <li><a href="googleprint.php">Google Cloud print</a></li>
                             </ul>
                         </li>
                         <li id="lex">Lexmark

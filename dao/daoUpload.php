@@ -50,7 +50,7 @@
                     //examino la pagina a mostrar y el inicio del registro a mostrar
                     if (isset($pag1)) {
                     $page = $pag1;
-                }
+                    }
 
                 if (!$page) {
                     $start = 0;
@@ -79,11 +79,16 @@
         public function lista($total_pages,$page,$tipo){
    echo '<ul class="lista">';
     if ($total_pages > 1) {
+                  //mostrar limite en numeros de paginacion
+                  $paginate_max = 2;
+                  $pmin = ($page>$paginate_max) ? ($page-$paginate_max) : 1;
+                  $pmax = ($page<($total_pages-$paginate_max)) ? ($page+$paginate_max) : $total_pages;
+                  /************************************* */
         if ($page != 1) {
             echo '<li class="page-item"><a class="page-link" onclick="ajax('.$tipo.','.($page-1).')"><span aria-hidden="true">&laquo;</span></a></li>';
         }
 
-        for ($i=1;$i<=$total_pages;$i++) {
+        for ($i=$pmin;$i<=$pmax;$i++) {
             if ($page == $i) {
                 echo '<li class="page-item active"><a class="page-link" href="#">'.$page.'</a></li>';
             } else {

@@ -1,6 +1,5 @@
 <?php
 require_once "../controles/Connection.php";
-include "../Models/Marca.php";
 class daoMarca
 {
   public function modificar($mar){

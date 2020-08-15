@@ -19,8 +19,7 @@ class Conection
     {
            
            $this->con= new mysqli(SERVIDOR,USUARIO,CONTRA,DB);
-         
-           /*mysqli_query("SET NAMES 'utf8'");*/    
+           $this->con->query("SET NAMES UTF8");
             if ($this->con->connect_errno) {
                
                

@@ -1,5 +1,16 @@
 $("#publicacion").submit(function(e){
       e.preventDefault();
+      var messageLength = CKEDITOR.instances['ckeditor'].getData().replace(/<[^>]*>/gi, '').length;
+      if($("#titulo").val() == ""){
+        swal("Error","Debe escribir un titulo para la publicacion","error");
+      }else if($("#footer").val() == ""){
+        swal("Error","Debe escribir un pie de contenido","error");
+      }else if($("#imagen").val() < 1){
+        swal("Error","Ingrese una foto de portada para el articulo","error");
+      }else if(!messageLength){
+        swal("Error","Escriba un articulo","error");
+      }else{
+      
       for ( instance in CKEDITOR.instances )
        {
          CKEDITOR.instances[instance].updateElement();
@@ -18,7 +29,6 @@ $("#publicacion").submit(function(e){
         processData:false,
         success:function(data){
             var id = data;
-            alert(id);
             swal({
               title: "Publicado",
               text: "Se ha publicado el articulo",
@@ -37,4 +47,5 @@ $("#publicacion").submit(function(e){
         }
       })
     }
+  }
 })

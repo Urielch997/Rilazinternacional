@@ -38,7 +38,7 @@ class daoRestricciones extends Conection
                     }
                     $conexiontabla = new Conection();
                     $conexiontabla->conect();
-                    $consultaTabla = "select * from ".$filaRes['identificador'].";";
+                    $consultaTabla = "SELECT * FROM ".$filaRes['identificador'].";";
                     $resultadoTabla = $conexiontabla->getCon()->query($consultaTabla);
                     while($filaTabla = $resultadoTabla->fetch_assoc() )
                     {
@@ -77,14 +77,22 @@ class daoRestricciones extends Conection
                 $dataTable=null;
                 $conexionPublica = new Conection();
                 $conexionPublica->conect();
-                $res= $conexionPublica->getCon()->query($sql);
-                $dataTable.="";
-                while($fila=$res->fetch_assoc())
-                {
+                $res = $conexionPublica->getCon()->query($sql);
+                $count = $res->num_rows;
+                $dataTable="";
+                
+                if($count>0){
+                while($fila=$res->fetch_assoc()){
+                if($_SESSION['user']['Perfil'] == "4"){
+                    $del = '<a href="#" class="text-danger" onclick="borrarpub('.$fila['idPublicacion'].')">Eliminar</a>';
+                }else{
+                    $del = '';
+                }
+
                     $dataTable.=
                     "<div class='col-md-4 col-sm-6'>
                         <div class='card video'>
-                            <div class='card-title'>
+                            <div class='card-title box'>
                                     <img src='../img/".$fila['ruta']."' class='card-img-top img-title'  >
                             </div>
                             <div class='card-body'>
@@ -93,14 +101,24 @@ class daoRestricciones extends Conection
                             </div>
                             <div class='card-footer'>
                             <form action='../Views/viewPublication.php' method='GET'>
-
                             <button type='submit' name='idPublicacion' value='".$fila['idPublicacion']."' class='btn btn-primary'>Ir a Publicacion</button>
+                            ".$del."
                             </form>
                                 </div>
                         </div>
                     </div>";
                 }
-                $dataTable.="";
+
+                }else{
+                    $dataTable .='<div class="card">
+                    <div class="card-body text-center d-flex justify-content-center flex-wrap align-items-center" style="height:300px;">
+                    <p class="mr-5"><span class="material-icons">
+                    warning
+                    </span></p>
+                      <p>Ninguna publicacion, realice una publicacion para poder visualizarla.</p>
+                    </div>
+                  </div>';
+                }
                 $conexionPublica->close();
                //echo $sql;
                 $conexion->close();
@@ -273,7 +291,7 @@ class daoRestricciones extends Conection
             /**eliminamos los registros anteriores */
             $conecMarcaDelete = new Conection();
             $conecMarcaDelete->conect();
-            $sqlMDelke="delete from restricciones WHERE perfil = '".$objRes->getPerfil()."';";
+            $sqlMDelke="DELETE FROM restricciones WHERE perfil = '".$objRes->getPerfil()."' AND identificador NOT IN ('menu');";
             $resultadoResDelete = $conecMarcaDelete->getCon()->query($sqlMDelke);
             $conecMarcaDelete->close();
             /** */
@@ -545,7 +563,7 @@ class daoRestricciones extends Conection
         {
             $conecPerfil = new Conection();
             $conecPerfil->conect();
-            $sql="select idPerfil,nombre from perfil;";
+            $sql="SELECT idPerfil,nombre FROM perfil WHERE idPerfil NOT IN (4);";
             $resultadoRes = $conecPerfil->getCon()->query($sql);
             $returData = null;
               $returData = "<select name='selPerfil' id='opPerfil' class='custom-select'>";
@@ -582,16 +600,76 @@ class daoRestricciones extends Conection
             $cn = new Conection();
             $cn->conect();
             $res = $cn->getCon()->query("SELECT * FROM restricciones WHERE perfil=".$id." AND identificador='menu'");
+            $cont = $res->num_rows;
             $restric= Array();
             if($res){
+                if($cont>0){
                 while($r = $res->fetch_assoc()){
                     array_push($restric,$r['idTabla']);
                 }
                 return json_encode($restric,JSON_FORCE_OBJECT);
+              }else{
+                return json_encode(Array("0" => "NO"));
+              }
             }else{
               echo "Error: ".$cn->getCon()->error;
             }
         }
+
+        public function verResMenuTipo($id){
+            $cn = new Conection();
+            $cn->conect();
+            $res = $cn->getCon()->query("SELECT * FROM usuarios WHERE Perfil=".$id." ORDER BY Perfil ASC");
+            $users = Array();
+            $restric= Array();
+            
+            while($r = $res->fetch_assoc()){
+                array_push($users,$r['idusuario']);
+            }
+            $cnt = 0;
+            $usuario = Array();
+            foreach($users as $key){
+                $stm = $cn->getCon()->query("SELECT perfil,idTabla,identificador FROM restricciones WHERE perfil=".$key." AND identificador='menu' ORDER BY idTabla ASC");
+                $cont = $stm->num_rows;
+                if($stm){
+                    if($cont>0){   
+                        $cnt += 1;         
+                        while($row = $stm->fetch_assoc()){
+                                array_push($usuario,$row['perfil']);
+                                if($row['perfil'] == $key){
+                                        array_push($restric,$row['idTabla']);
+                                }
+                        }
+                  }else{
+                            
+                          $cnt = "NO";
+                  }
+                }else{
+                  echo "Error: ".$cn->getCon()->error;
+                }
+            }
+            return json_encode(Array("Tablas" => $restric, "count" => $cnt,"idUsuario" => $usuario),JSON_FORCE_OBJECT);
+        }
+
+        public function porTipoMenu($id,$seccion){
+            $cn = new Conection();
+            $cn->conect();
+            $sqlCom = "SELECT restricciones.*,usuarios.idusuario,usuarios.Perfil FROM restricciones INNER JOIN usuarios ON usuarios.idusuario = restricciones.perfil WHERE usuarios.Perfil =".$id." AND identificador='menu' AND idTabla=".$seccion;
+            $consult = $cn->getCon()->query($sqlCom);
+            $count = $consult->num_rows;
+            if($count>0){
+                while($r = $consult->fetch_assoc()){
+                    $cn->getCon()->query("DELETE FROM restricciones WHERE perfil=".$r['idusuario']." AND identificador='menu' AND idTabla=".$seccion);
+                }
+            }else{ 
+                $sql = "SELECT usuarios.*,perfil.idPerfil FROM usuarios INNER JOIN perfil ON usuarios.Perfil = perfil.idPerfil WHERE usuarios.Perfil =".$id;
+                $CMD = $cn->getCon()->query($sql);
+                while($r= $CMD->fetch_assoc()){
+                    $cn->getCon()->query("INSERT INTO restricciones(identificador,perfil,idTabla) VALUES('menu',".$r['idusuario'].",".$seccion.")");
+                }
+            }
+        }
+        
 }
 
 

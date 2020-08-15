@@ -185,23 +185,35 @@ $(document).ready(function() {
 
         });
 
-        $(".list-menu").each(function(){
-            $(this).children().click(function(){
+        $(".list-menu").each(function(e){
+            $(this).children().click(function(e){
+              e.preventDefault();
               var usuario = $("#usuario").val();
+              var tipous = $("#tipousuario").val();
               let child = $(this);
-              $.ajax({
-                url:"../controles/restriccionesMenu.php",
-                data:{"id":usuario,"seccion":child.index(),"inst":1},
-                type:"POST",
-                success:function(data){
-                  $("#result").html(data);
-                }
-              })
-            if(child.hasClass("active") || child.hasClass("disabled")){
-                child.removeClass("active");
-            }else{
-              child.addClass("active");
-            }
+              var tipousu = $('#portipo');
+              var usu = $("#porusuario");
+              if(usu.prop('checked')){
+                $.ajax({
+                  url:"../controles/restriccionesMenu.php",
+                  data:{"id":usuario,"seccion":child.index(),"inst":1},
+                  type:"POST",
+                  success:function(){
+                    selectUser(usuario);
+                  }
+                })
+              }else if(tipousu.prop('checked')){
+                limpiarAvisos();
+                $.ajax({
+                  url:"../controles/restriccionesMenu.php",
+                  data:{"id":tipous,"seccion":child.index(),"inst":3},
+                  type:"POST",
+                  success:function(){ 
+                    porTipo(tipous);
+                  }
+                }) 
+              }
+              
             });
         });
 
@@ -211,27 +223,120 @@ $(document).ready(function() {
         });
 
         function selectUser(id){
+                  $.ajax({
+                      data:{"id":id,"sru":2},
+                      type:"POST",
+                      url:"../controles/restriccionesMenu.php",
+                      success:function(datos){
+                        ViewRestric(datos);
+                    }
+                  })
+        }
+
+
+
+
+       function ViewRestric(datos){
+          let d = JSON.parse(datos);
+          var numOb =  Object.keys(d).length;
+          console.log(d);
+          $(".list-menu").each(function(){
+              let child = $(this).children();
+              child.removeClass("active");
+              child.each(function(){
+                for (var i = 0; i < numOb; i++) {
+                if(d != "NO"){
+                  if($(this).index()==d[i]){
+                      $(this).addClass("active");
+                  }
+                }
+                }
+
+              })
+          })
+        }
+
+        $("#tipousuario").attr("disabled",true);
+        $('input[type="radio"]').on('change', this, function(){
+          var tipousu = $('#portipo');
+          var usu = $("#porusuario");
+            if(usu.prop('checked')){
+                limpiarAvisos();
+                selectUser($("#usuario").val());
+                $("#tipousuario").attr("disabled",true);
+                $("#usuario").attr("disabled",false);
+            }else{
+                limpiarAvisos();
+                porTipo($("#tipousuario").val());
+                $("#usuario").attr("disabled",true);
+                $("#tipousuario").attr("disabled",false);
+            }
+        });
+
+        $("#tipousuario").change(function(){
+            var id = $(this).val();
+            limpiarAvisos();
+            porTipo(id);
+        });
+
+        function limpiarAvisos(){
+          $(".list-menu").each(function(e){
+            let child = $(this).children();
+            child.each(function(){ 
+                $(this).find("#count").remove();
+            })
+          })
+        }
+
+        function porTipo(id){
           $.ajax({
-              data:{"id":id,"sru":2},
+              data:{"id":id,"sru":3},
               type:"POST",
               url:"../controles/restriccionesMenu.php",
               success:function(datos){
-                let d = JSON.parse(datos);
-                var numOb =  Object.keys(d).length;
-                $(".list-menu").each(function(){
-                    let child = $(this).children();
-                    child.removeClass("active");
-                    child.each(function(){
-                      for (var i = 0; i < numOb; i++) {
-                        if($(this).index()==d[i]){
-                            $(this).addClass("active");
-                        }
+                let data = JSON.parse(datos);
+                console.log(data);
+                var numOb = Object.keys(data["Tablas"]).length;
+                var tabal = Array();
+                for(var i = 0;  i<numOb; i++){
+                   tabal.push(data["Tablas"][i]);
+                }
+                Array.prototype.sortNumbers = function(){
+                  return this.sort(
+                      function(a,b){
+                          return a - b
                       }
-
-                    })
-                })
+                  );
               }
+              console.log(tabal.sortNumbers());
+                var ctn = 0;
+                var table;
+                $(".list-menu").each(function(e){
+                  let child = $(this).children();
+                  child.removeClass("active");
+                  child.each(function(){ 
+                      for (var i = 0; i < numOb; i++) {
+                          if($(this).index() == tabal[i]){
+                                if(table == tabal[i] || table == null){
+                                  ctn += 1;
+                                  table = tabal[i];
+                                  console.log(ctn);
+                                }else{
+                                  ctn = 1;
+                                  table = tabal[i];
+                                }
+                              $(this).find("label").remove();
+                              $(this).append("<label class='badge badge-primary badge-pill' id='count'>"+ctn+"</label>");
+                              if(ctn == data["count"]){
+                                $(this).addClass("active");
+                              }
+                           }
+                      }
+                      
+                  })
+                })
+            }
           })
-        }
+}
 
 });

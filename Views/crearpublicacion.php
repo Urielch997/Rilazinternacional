@@ -1,7 +1,22 @@
 <?php
-include "../dao/daoMarca.php";
-
 session_start();
+include "../Controllers/publicationController.php";
+if(!class_exists('daoRestricciones')){
+    include "../dao/daoRestricciones.php";
+}
+include "../controles/mostrarResMenu.php";
+
+if(!in_array("1",$d)){
+  echo "<script type='text/javascript'>
+  alert('No tienes permiso para ver esta seccion.');
+  if(window.history.length  == 0){
+      location.href='../login.php';
+  }else{
+      location.href = window.history.back();
+  }
+  </script>";
+}
+include "../dao/daoMarca.php";
     $marc= new daoMarca();
 ?>
 <!DOCTYPE html>
@@ -42,7 +57,7 @@ arrow_back
   <div class="row">
     <div class="form-group col-md-6">
       <label>Titulo de la publicacion</label>
-        <input type="text" class="form-control" name="titulo">
+        <input type="text" class="form-control" name="titulo" id="titulo">
     </div>
     <div class="form-group col-md-6">
       <label>Tipo:</label>
@@ -62,7 +77,7 @@ arrow_back
 
     <div class="form-group col-md-6">
       <label>Pie de vista previa de la publicacion</label>
-        <input type="text" class="form-control" name="footer">
+        <input type="text" class="form-control" name="footer" id="footer">
     </div>
 
     <div class="form-group col-md-12">
@@ -94,5 +109,11 @@ arrow_back
         </div>
       </footer>
 <script src="../js/nuevaPublicacion.js"></script>
+<script>
+    CKEDITOR.replace('ckeditor', {
+        filebrowserUploadUrl: 'ckeditor/ck_upload.php',
+        filebrowserUploadMethod: 'form'
+    });
+</script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 
 <?php
-session_start();
-//if(isset($_SESSION["user"]))
-//{
+require_once '../controles/validar.php';
 require "../Controllers/restriccioonesController.php";
 if(!class_exists('daoRestricciones')){
     include "../dao/daoRestricciones.php";
@@ -90,7 +88,7 @@ $_SESSION["user"]["Perfil"] = $obj->actualizarSession($_SESSION["user"]["ID"]);
       <!-- End Navbar -->
 
       <?php
-       /** function cargar(Id,name,cargo,edad,direccion){
+       /* function cargar(Id,name,cargo,edad,direccion){
 			document.frm2.txtIdUserE.value=Id;
 			document.frm2.txtNombre.value=name;
 			document.frm2.txtCargo.value=cargo;
@@ -160,26 +158,50 @@ $_SESSION["user"]["Perfil"] = $obj->actualizarSession($_SESSION["user"]["ID"]);
         <div class="row justify-content-center">
             <label class="h1">Menu</label>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+          <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="porusuario" name="defaultExampleRadios" checked="checked">
+              <label class="custom-control-label" for="porusuario">Por usuario</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="portipo" name="defaultExampleRadios">
+              <label class="custom-control-label" for="portipo">Por tipo</label>
+          </div>
+        </div>
+        </div>
 
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-6">
             <div class="form-group">
               <label class="h5 align-middle">Usuario</label>
-              <select class="custom-select" id="usuario" >
+              <select class="custom-select" id="usuario">
                   <?php
                     $user->seletListuser();
                   ?>
               </select>
             </div>
         </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h5 align-middle">Tipo de usuario</label>
+            <select class="custom-select" id="tipousuario">
+                <option value="1">ADMINSTRADOR</option>
+                <option value="2">BASICO</option>
+                <option value="3">INVITADO</option>
+            </select>
+          </div>
+      </div>
         <div class="col-md-12">
             <div class="list-group list-menu">
-                <a href="#" class="list-group-item list-group-item-action"><i class="material-icons align-middle mr-3">speaker_notes</i>Publicaciones</a>
-                <a href="#" class="list-group-item list-group-item-action"><i class="material-icons align-middle mr-3">group</i>Perfil de usuarios</a>
-                <a href="#" class="list-group-item list-group-item-action"><i class="material-icons align-middle mr-3">not_interested</i>Restricciones</a>
-                <a href="#" class="list-group-item list-group-item-action" tabindex="-1" aria-disabled="true"><i class="material-icons align-middle mr-3">library_books</i>Marcas</a>
-                <a href="#" class="list-group-item list-group-item-action"><i class="material-icons align-middle mr-3">local_printshop</i>Equipos</a>
-                <a href="#" class="list-group-item list-group-item-action"><i class="material-icons align-middle">persons</i>Mi Perfil</a>
+                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" ><span><i class="material-icons align-middle mr-3">speaker_notes</i>Publicaciones</span></a>
+                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" ><span><i class="material-icons align-middle mr-3">group</i>Perfil de usuarios</span></a>
+                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" ><span><i class="material-icons align-middle mr-3">not_interested</i>Restricciones</span></a>
+                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" tabindex="-1" aria-disabled="true" ><span><i class="material-icons align-middle mr-3">library_books</i>Marcas<span></a>
+                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span><i class="material-icons align-middle mr-3">local_printshop</i>Equipos</span></a>
+                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" ><span><i class="material-icons align-middle">persons</i>Mi Perfil</span></a>
             </div>
       </div>
       <div id="result">
@@ -230,7 +252,11 @@ $_SESSION["user"]["Perfil"] = $obj->actualizarSession($_SESSION["user"]["ID"]);
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-
+  <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+  </script>
 </body>
 </html>
 

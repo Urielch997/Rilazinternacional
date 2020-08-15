@@ -1,9 +1,18 @@
-.custom-file-label::after{
-  content:"Seleccionar.";
+.select-img::after,.select-pdf::after{
+  font-family:'Material Icons';
   background:#9c27b0;
   color:#fff;
   text-align: center;
   display:flex;
+  font-size: 25px;
   justify-content: center;
   align-items: center;
+}
+
+.select-img::after{
+  content:"wallpaper";
+}
+
+.select-pdf::after{
+  content:"picture_as_pdf";
 }

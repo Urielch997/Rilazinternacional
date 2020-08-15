@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../controles/validar.php';
 if(!class_exists('daoRestricciones')){
     include "../dao/daoRestricciones.php";
 }
@@ -15,10 +15,6 @@ if(!in_array("4",$d)){
   }
   </script>";
 }
-
-if(isset($_SESSION["user"]))
-{
-
 require '../dao/daoUpload.php';
 include '../Controllers/paginacion.php';
 ?>
@@ -97,14 +93,14 @@ include '../Controllers/paginacion.php';
       <div class="form-group col-md-6">
      <div class="custom-file">
        <input type="file" class="custom-file-input" id="foto" name="foto" id="foto">
-       <label class="custom-file-label" for="foto">Seleccionar foto</label>
+       <label class="custom-file-label select-img" for="foto">Seleccionar foto</label>
       </div>
     </div>
 
       <div class="form-group col-md-6">
       <div class="custom-file">
         <input type="file" class="custom-file-input" id="pdf" name="pdf">
-        <label class="custom-file-label" for="pdf">Seleccionar PDF</label>
+        <label class="custom-file-label select-pdf" for="pdf">Seleccionar PDF</label>
       </div>
     </div>
 </div>
@@ -344,11 +340,4 @@ include '../Controllers/paginacion.php';
     });
   </script>
 </body>
-
 </html>
-
-<?php
-}else{
-    header("location: ../login.php");
-}
-?>

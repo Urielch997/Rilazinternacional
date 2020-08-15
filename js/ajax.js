@@ -70,7 +70,7 @@ function ajax(valor,page,tipo,estado){
                 data: {valor1:valor,page1:page,tipo1:tipo,estado1:estado},
                 method:"GET",
 				url:'controles/mostrarequipos.php',
-				 beforeSend: function(valor1){
+				 beforeSend: function(){
 				 $('#cont2').html('<div class="carga"><img src="img/pro.gif">Cargando...</div>');
 			  },
 				success:function(valor1){
@@ -86,7 +86,7 @@ function tablaequip(page){
                 method:"GET",
 				url:'../controles/mostrarTabla.php',
         beforeSend:function(){
-          $("#hola").html("<img src='../Views/img/preload-equip.gif'/>")
+          $("#hola").html("<img src='../img/preload.gif'/>")
         },
 				success:function(page1){
 					$("#hola").html(page1).fadeIn(6000);

@@ -91,28 +91,7 @@ class daoPublicacion
 
         }
     }
-    public function getContenido2($idPublicacion)
-    {
-        try{
-            //instancia para conectar
-            $conexion =conexion();
-            $consultaSQL = "select publicacion.idPublicacion,publicacion.titulo,publicacion.contenido,publicacion.contenido2,publicacion.footer,publicacion.fecha ,tipocontenido.nombre as 'Tipo Contenido' ,marca.nombre as 'marca', ap.ruta
-            from  publicacion
-            inner join marca marca on marca.idMarca = publicacion.marca
-            inner JOIN tipocontenido tipocontenido on tipocontenido.idTipoContenido = publicacion.tipocontenido
-            inner JOIN  archivospublicados ap on ap.publicacion = publicacion.idPublicacion
-            where ap.type='title' and publicacion.idPublicacion= ".$idPublicacion."; ";
-            $resultadoRes = $conexion->prepare($consultaSQL);
-            $resultadoRes->execute();
-            $text= null;
-                while($fila = $resultadoRes->fetch(PDO::FETCH_ASSOC)){
-                    $text.=$fila['contenido2'];
-                }
-          return $text;
-        }catch(Exeption $error){
 
-        }
-    }
     public function getFooter($idPublicacion)
     {
         try{
@@ -150,7 +129,7 @@ class daoPublicacion
             $resultadoRes->execute();
             $text= null;
                 while($fila = $resultadoRes->fetch(PDO::FETCH_ASSOC)){
-                    $text.=$fila['fecha'];
+                    $text.=date("Y/m/d",strtotime($fila['fecha']));
                 }
           return $text;
         }catch(Exeption $error){
@@ -207,6 +186,12 @@ class daoPublicacion
       }catch(PDOException $e){
         echo $e->getMessage();
       }
+    }
+
+    public function borrar($id){
+        $con = conexion();
+        $stm = $con->prepare("DELETE FROM archivospublicados WHERE publicacion=".$id."; DELETE FROM publicaciones WHERE idPublicacion =".$id);
+        $stm->execute();
     }
 
 

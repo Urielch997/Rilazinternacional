@@ -1,9 +1,8 @@
 
 <?php
-session_start();
-if(!class_exists('daoRestricciones')){
-    include "../dao/daoRestricciones.php";
-}
+require_once '../controles/validar.php';
+require_once "../dao/daoRestricciones.php";
+
 include "../controles/mostrarResMenu.php";
 
 if(!in_array("1",$d)){
@@ -243,7 +242,7 @@ $obj = new usuarioControllers();
            <div class="modal-body">
              <form name="formUsuarioIngreso" id="formUsuarioIngreso">
               <div class="row">
-                <div class='col-md-10'>
+                <div class='col-md-6'>
                      <div class='form-group' id="nombre">
                        <label >Nombre</label>
                        <input type='text' name='txtnombre'  id="txtnombreNU" class='form-control' required>
@@ -282,10 +281,11 @@ $obj = new usuarioControllers();
                        <input type='text' name='txtcoreeo' id="txtcoreeo"  class='form-control' required>
                      </div>
                    </div>
-
+                   <div class='col-md-12'>
                  <?php
                      echo $obj->listarPerfil();
                   ?>
+                </div>
              </div>
 
              </form>
@@ -301,6 +301,7 @@ $obj = new usuarioControllers();
            </div>
          </div>
        </div>
+     </div>
        <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">

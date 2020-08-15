@@ -9,6 +9,7 @@ function conexion(){
 
 try{
 	$conn = new PDO('mysql:host='.$host.';dbname='.$db,$user,$pwd);
+	$conn->exec("set names utf8");
 	//echo 'conexion satisfactoria.<br>';
 
 }catch(PDDException $e){

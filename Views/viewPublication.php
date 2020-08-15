@@ -1,11 +1,13 @@
 <?php
+
+session_start();
 include "../Controllers/publicationController.php";
 if(!class_exists('daoRestricciones')){
     include "../dao/daoRestricciones.php";
 }
 include "../controles/mostrarResMenu.php";
 
-if(!in_array("1",$d)){
+if(!in_array("0",$d)){
   echo "<script type='text/javascript'>
   alert('No tienes permiso para ver esta seccion.');
   if(window.history.length  == 0){
@@ -15,10 +17,9 @@ if(!in_array("1",$d)){
   }
   </script>";
 }
-session_start();
 if(isset($_GET["idPublicacion"]))
 {
-
+    $idPub= $_GET["idPublicacion"];
     $obj = new daoPublicacion();
 ?>
 <!DOCTYPE html>
@@ -40,49 +41,57 @@ if(isset($_GET["idPublicacion"]))
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <link href="CSS/publicacion.css" rel="stylesheet"/>
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script src="../assets/js/plugins/sweetalert2.js"></script>
+  <meta charset="UTF-8"/>
 </head>
 <body>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
 
+        </div>
+        <div class="col-md-2">
+          <a href="Publicaciones.php">
+            <button class="btn btn-info">Regresar</button>
+          </a>
+        </div>
       </div>
-      <div class="col-md-2">
-        <a href="Publicaciones.php">
-          <button class="btn btn-info">Regresar</button>
-        </a>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1><?php echo $obj->getTitulo($_GET["idPublicacion"]);?></h1>
+        </div>
       </div>
-    </div>
+        <div class="row d-flex justify-content-center align-items-center img-viewPub">
+          <img class="img" src='../img/<?php echo $obj->getImgTitle($_GET['idPublicacion']); ?>'/>
+        </div>
+      <div class="row publicacion">
+          <h4>
+            <?php echo $obj->getContenido($_GET["idPublicacion"]); ?>
+          </h4>
+            <hr>
+      </div>
+      <div class="col-md-12">
+        <form id="comentar">
+          <div class="row">
+            <div class="col-md-10">
+              <textarea class="form-control" placeholder="Comentar" rows="3" name="coment" id="coment"></textarea>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary">Comentar</button>
+            </div>
+          </div>
+          <input type="hidden" value=<?php echo $idPub;?> name="idpub" id="idpub">
+          <input type="hidden" value=<?php echo $_SESSION["user"]["ID"];?> name="iduser">
+        </form>
+      </div>
+      <div class="row">
+          
+            <div id="comentarios" class="col-md-12">
+          </div>
+      </div>
   </div>
-<div class="container">
-    <center>
-    <div class="row">
-      <div class="col-md-4">
-
-      </div>
-      <div class="col-md-4">
-        <h1><?php echo $obj->getTitulo($_GET["idPublicacion"]);?></h1>
-      </div>
-      <div class="col-md-4">
-
-      </div>
-    </div>
-    <img class="img" src='../img/<?php echo $obj->getImgTitle($_GET['idPublicacion']); ?>' style="border-radius: 30px; padding: 5px;" />
-
-  </center>
-  <div class="row publicacion">
-    <h4>
-      <?php echo $obj->getContenido($_GET["idPublicacion"]); ?>
-    </h4>
-    <hr>
-    <h4>
-      <?php echo $obj->getContenido2($_GET["idPublicacion"]); ?>
-    </h4>
-  </div>
-
-
-
-</div>
 
 
 <footer class="footer">
@@ -108,6 +117,7 @@ if(isset($_GET["idPublicacion"]))
 
         </div>
       </footer>
+  <script type="text/javascript" src="../js/comentarios.js"></script>  
 </body>
 </html>
 <?php

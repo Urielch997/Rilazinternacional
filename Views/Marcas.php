@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+require_once '../controles/validar.php';
 if(!class_exists('daoRestricciones')){
     include "../dao/daoRestricciones.php";
 }
@@ -16,9 +16,6 @@ if(!in_array("3",$d)){
   }
   </script>";
 }
-
-if(isset($_SESSION["user"]))
-{
 include ("../Controllers/marcasControllers.php");
 $obj = new marcasControllers();
 
@@ -237,9 +234,3 @@ $obj = new marcasControllers();
   <script src="Js/sweetAlert.js"></script>
 </body>
 </html>
-
-<?php
-}else{
-    header("location: ../login.php");
-}
-?>

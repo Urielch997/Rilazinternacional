@@ -1,23 +1,10 @@
-
 <?php
-session_start();
-if(!class_exists('daoRestricciones')){
-    include "../dao/daoRestricciones.php";
-}
+require_once '../controles/validar.php';
+require_once "../dao/daoRestricciones.php";
 include "../controles/mostrarResMenu.php";
-
 if(!in_array("0",$d)){
-  echo "<script type='text/javascript'>
-  alert('No tienes permiso para ver esta seccion.');
-  if(window.history.length  == 0){
-      location.href='../login.php';
-  }else{
-      location.href = window.history.back();
-  }
-  </script>";
+  echo "<script> window.location='../login.php'; </script>";
 }
-if(isset($_SESSION["user"]))
-{
 $instConection = new daoRestricciones();
 $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"]["ID"]);
 ?>
@@ -36,12 +23,16 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
   <link rel="stylesheet" href="../css/iconsmaterial.css">
   <!-- CSS Files -->
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <script src="../assets/js/core/jquery.min.js"></script>
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
-
+  <link rel="stylesheet" href="CSS/public.css">
+  <link href="CSS/publicaciones-post.css" rel="stylesheet">
+  <script src='Js/jquery.js'></script>
+  <script src="../assets/js/plugins/sweetalert2.js"></script>
 </head>
 
-<body class>
+<body>
 <?php include 'nav.php'; ?>
 
     <div class="main-panel">
@@ -50,7 +41,15 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="collapse navbar-collapse justify-content-end">
-            <h5><small>Te encuentras en:</small> Listado de Publicaciones</h5>
+            <h5>
+              <nav class="menu-seccion">
+                <ul>
+                  <li><a href="#publicaciones">Publicaciones</a></li>
+                  <li><a href="#Boletines">Boletines</a></li>
+                  <li><a href="#videos">Videos</a></li>
+                </ul>
+              </nav>
+            </h5>
             </div>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +73,7 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                 <a class="dropdown-item" href="usuario.php">Perfil</a>
                   <a class="dropdown-item" href="Publicaciones.php">Publicaciones</a>
-                  <a class="dropdown-item" href="capacitaciones.php">Capacitaciones</a>
+                  <a class="dropdown-item" href="config.php">Configuracion</a>
                   <div class="dropdown-divider"></div>
                   <form action="Controllers/acceso.php" method="POST">
                     <a class="dropdown-item" href="../Controllers/acceso.php?cerrar">Cerrar Session</a>
@@ -88,9 +87,9 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <?php if($_SESSION["user"]["Perfil"] == "1"){ ?>
-          <div class="row">
-            <a href="crearpublicacion.php"><button class="btn btn-primary"><i class="material-icons">control_point</i>Agregar publicacion</button></a>
+          <?php if($_SESSION["user"]["Perfil"] != "3" && $_SESSION["user"]["Perfil"] != "2" ){ ?>
+          <div class="row" id='publicaciones'>
+            <a href="crearpublicacion.php"><button class="btn btn-primary"><i class="material-icons">control_point</i></button></a>
           </div>
         <?php } ?>
           <div class="row">
@@ -99,9 +98,50 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
             ?>
           </div>
           <br>
+          <div class="row" id='Boletines'>
+            <div class="col-md-6 d-flex align-items-center">
+            <?php if($_SESSION["user"]["Perfil"] != "3" && $_SESSION["user"]["Perfil"] != "2"){ ?>
+                <div class='col-md-3'><a href="crearboletin.php"><button class="btn btn-success"><i class="material-icons">control_point</i></button></a></div>
+            <?php }?>
+                <div class="col-md-3">Boletines</div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="material-icons">search</i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Buscar" id="buscar-bol" onkeyup="load(this.value,0);">
+                </div>
+            </div>
+           
+            <div id="datos-bol" class="col-md-12 d-flex justify-content-center flex-wrap">
+                <div class="row d-flex justify-content-center align-items-center position-relative col-md-12 mt-5">
+                    <div id="circle" class="wait">
+                      <div class="loader">
+                        <div class="loader">
+                            <div class="loader">
+                              <div class="loader">
+
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div> 
+                 </div>
+          </div>
+          </div>
           <div class="row">
-            Boletines
-            <hr></hr>
+            <div class="col-md-12">
+            <?php if($_SESSION["user"]["Perfil"] != "3" && $_SESSION["user"]["Perfil"] != "2"){ ?>
+              <a href="subirVideo.php"><button class="btn btn-primary"><i class="material-icons">add_circle_outline</i></button></a>
+            <?php } ?>
+            </div>
+            <div id="videos" class='d-flex flex-wrap w-100'>
+            
+            </div>
+
           </div>
         </div>
       </div>
@@ -143,12 +183,14 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+  <script src="Js/boletines.js"></script>
+  <script src="Js/eliminar.js"></script>
+  <script src="Js/videos.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -321,11 +363,5 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
     });
   </script>
 </body>
-
 </html>
 
-<?php
-}else{
-    header("location: ../login.php");
-}
-?>

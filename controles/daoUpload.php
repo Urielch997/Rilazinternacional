@@ -90,11 +90,16 @@
         public function lista($total_pages,$page,$tipo,$marca,$estado){
    echo '<ul class="lista">';
     if ($total_pages > 1) {
+            //mostrar limite en numeros de paginacion
+            $paginate_max = 2;
+            $pmin = ($page>$paginate_max) ? ($page-$paginate_max) : 1;
+            $pmax = ($page<($total_pages-$paginate_max)) ? ($page+$paginate_max) : $total_pages;
+            /************************************* */
         if ($page != 1) {
             echo '<li class="page-item"><a class="page-link" onclick="ajax('.$tipo.','.($page-1).',&#34;'.$marca.'&#34;,'.$estado.')"><span aria-hidden="true">&laquo;</span></a></li>';
         }
 
-        for ($i=1;$i<=$total_pages;$i++) {
+        for ($i=$pmin;$i<=$pmax;$i++) {
             if ($page == $i) {
                 echo '<li class="page-item active"><a class="page-link" href="#">'.$page.'</a></li>';
             } else {

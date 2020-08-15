@@ -9,7 +9,7 @@ class daoUsuarios
         try{
             //instancia para conecta
             $db=conexion();
-            $query = "SELECT * FROM usuarios WHERE username=:usuario or pass=:contra;";
+            $query = "SELECT * FROM usuarios WHERE username=:usuario AND pass=:contra;";
             $consultar = $db->prepare($query);
             $consultar->execute(array(':usuario' =>$username, ':contra' => $contra));
             $row = $consultar->fetch(PDO::FETCH_ASSOC);
@@ -46,7 +46,18 @@ class daoUsuarios
                 }
 
             }else{
-              $msj = Array("mensaje" => "usuario no registrado");
+              $db=conexion();
+              $query = "SELECT * FROM usuarios WHERE username=:usuario or pass=:contra;";
+              $consultar = $db->prepare($query);
+              $consultar->execute(array(':usuario' =>$username, ':contra' => $contra));
+              $row = $consultar->fetch(PDO::FETCH_ASSOC);
+              $count=$consultar->rowCount();
+              if($count>0){
+                $msj = Array("mensaje" => "usuario o contraseña incorrecto");
+              }else{
+                $msj = Array("mensaje" => "usuario no registrado");
+              }
+              
 
             }
 
@@ -117,7 +128,7 @@ class daoUsuarios
             $consultaSQL = "SELECT usuarios.idusuario,usuarios.Perfil,usuarios.estado,usuarios.nombre,usuarios.username,usuarios.pass,
             usuarios.direccion,usuarios.numeroTelefono,usuarios.correoElectronico, p.idPerfil,p.nombre as perfilU
             from usuarios
-            inner join Perfil p on p.idPerfil = usuarios.Perfil ;";
+            inner join Perfil p on p.idPerfil = usuarios.Perfil WHERE usuarios.Perfil NOT IN (4);";
             $resultado = $conexion->prepare($consultaSQL);
             $resultado->execute();
             $cant = $resultado->rowCount();//para saber cuantos registros trae una consulta
@@ -282,11 +293,11 @@ class daoUsuarios
     public function listarPerfil()
         {
             $conecPerfil =conexion();
-            $sql="select idPerfil,nombre from perfil;";
+            $sql="SELECT idPerfil,nombre FROM perfil WHERE idPerfil NOT IN (4);";
             $resultadoRes = $conecPerfil->prepare($sql);
             $resultadoRes->execute();
             $returData = null;
-              $returData = "<select name='selPerfil' class='form-control'>";
+              $returData = "<select name='selPerfil' class='custom-select'>";
             while($datosMarca = $resultadoRes->fetch(PDO::FETCH_ASSOC))
             {
                 $returData.= "<option class='dropdown-item'  value='".$datosMarca['idPerfil']."'>".$datosMarca['nombre']."</option>";
@@ -390,19 +401,21 @@ class daoUsuarios
         public function ingresar($usu){
           $conexion=conexion();
             $sql="INSERT INTO `usuarios`(`idusuario`, `Perfil`, `nombre`, `username`, `pass`,
-             `direccion`, `numeroTelefono`, `correoElectronico`)
+             `direccion`, `numeroTelefono`, `correoElectronico`,`estado`)
              VALUES ('0', '".$usu->getperfil()."', '".$usu->getNombreusuario()."',
              '".$usu->getUsername()."', '".$usu->getPass()."', '".$usu->getDireccion()."',
-              '".$usu->getNumTelefono()."', '".$usu->getCorreoElectronico()."');"
-              ;
+              '".$usu->getNumTelefono()."', '".$usu->getCorreoElectronico()."','ACTIVO');";
             $stm = $conexion->prepare($sql);
             $stm->execute();
-
+            $query2=$conexion->prepare('SELECT MAX(idusuario) AS id FROM usuarios;');
+            $query2->execute();
+            $r = $query2->fetch(PDO::FETCH_ASSOC);
+            $ins = $conexion->prepare("INSERT INTO `restricciones`( `identificador`, `perfil`, `idTabla`) VALUES ('menu',".$r['id'].",0), ('menu',".$r['id'].",5)");
         }
 
         public function seletListuser(){
           $cn = conexion();
-          $stm = $cn->prepare("SELECT idusuario,nombre FROM usuarios");
+          $stm = $cn->prepare("SELECT idusuario,nombre,Perfil FROM usuarios WHERE perfil NOT IN (4)");
           $stm->execute();
           while($r = $stm->fetch(PDO::FETCH_ASSOC)){
               echo "<option value=".$r['idusuario'].">".$r['nombre']."</option>";

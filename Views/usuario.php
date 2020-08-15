@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+require_once '../controles/validar.php';
 if(!class_exists('daoRestricciones')){
     include "../dao/daoRestricciones.php";
 }
@@ -16,12 +16,8 @@ if(!in_array("5",$d)){
   }
   </script>";
 }
-if(isset($_SESSION["user"]))
-{
 include ("../Controllers/usuarioControllers.php");
 $obj = new usuarioControllers();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -165,9 +161,3 @@ $obj = new usuarioControllers();
   </div>
   <!--   Core JS Files   -->
 </html>
-
-<?php
-}else{
-    header("location: ../login.php");
-}
-?>

@@ -13,6 +13,7 @@
 
          <div class="seccion-imagen-index" id="seccion">
            <ul>
+             <li><img src="img/social_media_image_la.png"></li>
              <li><img src="img/rilazinternacional2.png"></li>
              <li><img src="img/toshiba.png"></li>
              <li><img src="img/1280px-Lexmark-primary-logo.svg.png" alt="insertar SVG con la etiqueta image"></li>

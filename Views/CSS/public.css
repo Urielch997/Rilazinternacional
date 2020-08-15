@@ -1,0 +1,60 @@
+.box{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box .img-bol{
+    width: 60%;
+    height: auto;
+  }
+
+@supports(object-fit: cover){
+    .box .img-bol{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+
+#circle {
+	width: 150px;
+  height: 150px;
+}
+
+.loader {
+    width: calc(100% - 0px);
+	height: calc(100% - 0px);
+	border: 8px solid #e0e0e0;
+	border-top: 8px solid #26a69a;
+	border-radius: 50%;
+	animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+100% {transform: rotate(360deg);}
+} 
+
+.wait{
+  display: none;
+}
+
+.alerta{
+  font-size:25px;
+}
+
+.menu-seccion ul{
+  display: inline-flex;
+  list-style: none;
+}
+
+.menu-seccion ul li{
+  margin-right: 30px;
+}
+
+.menu-seccion ul li a{
+  color:#000;
+}

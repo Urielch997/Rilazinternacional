@@ -238,8 +238,7 @@ $(document).ready(function() {
       var username = $("#txtusername").val();
       var pass = $("#txtpass").val();
       var direc = $("#txtdireccion").val();
-      if(nombre == "" || nombre == null || username =="" || pass == "" || direc==""){
-        alert(nombre);
+      if(nombre == "" || nombre == null){
           $("#nombre").addClass("is-focused");
       }else{
       const swalWithBootstrapButtons = Swal.mixin({
