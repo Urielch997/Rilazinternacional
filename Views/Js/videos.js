@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    load();
+    loadVid();
 });
 
-function load(){
+function loadVid(){
     $.ajax({
         url:'../controles/viewVideo.php',
         type:'POST',
@@ -28,7 +28,7 @@ function eliminarVid(id){
                 data:{id:id},
                 type:'POST',
                 success:function(resultado){
-                    load();
+                    loadVid();
                     Swal.fire(
                         'Eliminado!',
                         resultado,

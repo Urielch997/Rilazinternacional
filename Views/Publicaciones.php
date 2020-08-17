@@ -103,7 +103,7 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
             <?php if($_SESSION["user"]["Perfil"] != "3" && $_SESSION["user"]["Perfil"] != "2"){ ?>
                 <div class='col-md-3'><a href="crearboletin.php"><button class="btn btn-success"><i class="material-icons">control_point</i></button></a></div>
             <?php }?>
-                <div class="col-md-3">Boletines</div>
+            <div class="col-md-3">Boletines</div>
             </div>
             <div class="col-md-6">
                 <div class="input-group">
@@ -116,20 +116,7 @@ $_SESSION["user"]["Perfil"] = $instConection->actualizarSession($_SESSION["user"
                 </div>
             </div>
            
-            <div id="datos-bol" class="col-md-12 d-flex justify-content-center flex-wrap">
-                <div class="row d-flex justify-content-center align-items-center position-relative col-md-12 mt-5">
-                    <div id="circle" class="wait">
-                      <div class="loader">
-                        <div class="loader">
-                            <div class="loader">
-                              <div class="loader">
-
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div> 
-                 </div>
+            <div id="datos-bol" class="col-md-12 d-flex justify-content-center flex-wrap"></div>  
           </div>
           </div>
           <div class="row">
